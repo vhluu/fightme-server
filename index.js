@@ -13,7 +13,7 @@ const app = new express();
 app.use(bodyParser.json());
 app.use(cors());
 
-var server = app.listen(5000,()=>{
+var server = app.listen(process.env.PORT || 5000,()=>{
   console.log("Hi, I am running at PORT 5000");
 })
 
