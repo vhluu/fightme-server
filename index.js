@@ -25,7 +25,7 @@ app.use('/api/turn', turn);
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 mongoose.connection.on('error',(error)=>{
-  console.log("Error");
+  console.log(error);
 });
 mongoose.connection.once('open',function(){
   console.log("DB connection established");
