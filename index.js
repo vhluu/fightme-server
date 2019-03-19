@@ -21,6 +21,27 @@ app.use('/api/game', game);
 app.use('/api/turn', turn);
 
 
+var io = require('socket.io').listen(server);
+
+// server.listen(4000);
+
+// socket io
+io.on('connection', function (socket) {
+  console.log('User connected ' + socket.id);
+  socket.on('disconnect', function(data) {
+    console.log('User disconnected ' + this.id);
+  });
+  socket.on('save-turn', function (data) {
+    console.log(data);
+    io.emit('new-turn', { turn: data });
+  });
+  socket.on('joined-game', function(data) {
+    console.log('player joined game' + this.id);
+    console.log(data);
+    io.emit('start-game', data);
+  });
+});
+
 // Connecting Mongo DB
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });

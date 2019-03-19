@@ -7,26 +7,26 @@ const cors = require('cors');
 var app = express();
 app.use(cors());
 var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+// var io = require('socket.io')(server);
 
-server.listen(4000);
+// server.listen(4000);
 
-// socket io
-io.on('connection', function (socket) {
-  console.log('User connected ' + socket.id);
-  socket.on('disconnect', function(data) {
-    console.log('User disconnected ' + this.id);
-  });
-  socket.on('save-turn', function (data) {
-    console.log(data);
-    io.emit('new-turn', { turn: data });
-  });
-  socket.on('joined-game', function(data) {
-    console.log('player joined game' + this.id);
-    console.log(data);
-    io.emit('start-game', data);
-  });
-});
+// // socket io
+// io.on('connection', function (socket) {
+//   console.log('User connected ' + socket.id);
+//   socket.on('disconnect', function(data) {
+//     console.log('User disconnected ' + this.id);
+//   });
+//   socket.on('save-turn', function (data) {
+//     console.log(data);
+//     io.emit('new-turn', { turn: data });
+//   });
+//   socket.on('joined-game', function(data) {
+//     console.log('player joined game' + this.id);
+//     console.log(data);
+//     io.emit('start-game', data);
+//   });
+// });
 
 /* GET ALL Turns */
 router.get('/', function(req, res, next) {
