@@ -9,7 +9,7 @@ app.use(cors());
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
-server.listen(4000);
+server.listen(process.env.PORT || 4000);
 
 // socket io
 io.on('connection', function (socket) {
