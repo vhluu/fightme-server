@@ -40,6 +40,11 @@ io.on('connection', function (socket) {
     console.log(data);
     io.emit('start-game', data);
   });
+  socket.on('chose-type', function(data) {
+    console.log('player joined game' + this.id);
+    console.log(data);
+    io.emit('chose-type', data);
+  });
 });
 
 // Connecting Mongo DB
