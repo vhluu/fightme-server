@@ -41,9 +41,9 @@ io.on('connection', function (socket) {
     io.emit('start-game', data);
   });
   socket.on('chose-type', function(data) {
-    console.log('player joined game' + this.id);
+    console.log('player has chosen type ' + this.id);
     console.log(data);
-    io.emit('chose-type', data);
+    socket.broadcast.emit('chose-type', data);
   });
 });
 
