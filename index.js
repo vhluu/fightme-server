@@ -45,6 +45,11 @@ io.on('connection', function (socket) {
     console.log(data);
     socket.broadcast.emit('chose-type', data);
   });
+  socket.on('new-move', function(data) {
+    console.log('player has move ' + this.id);
+    console.log(data);
+    socket.broadcast.emit('new-move', data);
+  });
 });
 
 // Connecting Mongo DB
@@ -56,22 +61,3 @@ mongoose.connection.on('error',(error)=>{
 mongoose.connection.once('open',function(){
   console.log("DB connection established");
 });
-
-// Setting up Socket.io
-
-// let io =  socket(server);
-
-// io.on("connection", function(socket){
-//   console.log("Socket Connection Established with ID :"+ socket.id)
-//   socket.on("game", async function(game){
-//     game.created = new Date();
-//     let response = await new session(game).save();
-//     socket.emit("game",game);
-//   })
-// })
-
-
-// app.get('/game', async (req,res) => {
-//   let result = await session.find();
-//   res.send(result);
-// })
